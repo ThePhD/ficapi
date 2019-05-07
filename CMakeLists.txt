@@ -13,16 +13,7 @@ set(ficapi_sources
 	"source/c++_api.cpp"
 )
 
-prepend(prefixed_ficapi_sources "${CMAKE_CURRENT_SOURCE_DIR}/" ${ficapi_sources})
-
-add_library(ficapi SHARED ${prefixed_ficapi_sources})
-if (MSVC)
-	target_compile_options(ficapi
-		PRIVATE /std:c++latest)
-else()
-	target_compile_options(ficapi
-		PRIVATE -std=c++1z)
-endif()
+add_library(ficapi SHARED ${ficapi_sources})
 set_target_properties(ficapi
 	PROPERTIES 
 	POSITION_INDEPENDENT_CODE TRUE)
