@@ -24,5 +24,3 @@ target_include_directories(ficapi
 	PUBLIC "include")
 target_link_libraries(ficapi 
 	PUBLIC ${CMAKE_DL_LIBS})
-
-
