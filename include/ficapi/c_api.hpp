@@ -48,16 +48,24 @@ enum ficapi_type {
 };
 
 FICAPI_API void ficapi_create(void** p_handle, ficapi_type ft);
+FICAPI_API int ficapi_create_fail(void** p_handle, ficapi_type ft, int fail);
 FICAPI_API void ficapi_re_create(void** p_handle, ficapi_type ft);
+FICAPI_API int ficapi_re_create_fail(void** p_handle, ficapi_type ft, int fail);
 FICAPI_API void ficapi_delete(void* handle, ficapi_type ft);
 FICAPI_API void ficapi_int_create(int** p_handle);
+FICAPI_API int ficapi_int_create_fail(int** p_handle, int fail);
 FICAPI_API void ficapi_int_re_create(int** p_handle);
+FICAPI_API int ficapi_int_re_create_fail(int** p_handle, int fail);
 FICAPI_API void ficapi_int_delete(int* handle);
 FICAPI_API void ficapi_handle_create(ficapi_opaque_handle* p_handle);
+FICAPI_API int ficapi_handle_create_fail(ficapi_opaque_handle* p_handle, int fail);
 FICAPI_API void ficapi_handle_re_create(ficapi_opaque_handle* p_handle);
+FICAPI_API int ficapi_handle_re_create_fail(ficapi_opaque_handle* p_handle, int fail);
 FICAPI_API void ficapi_handle_delete(ficapi_opaque_handle handle);
 FICAPI_API void ficapi_handle_no_alloc_create(ficapi_opaque_handle* p_handle);
+FICAPI_API int ficapi_handle_no_alloc_create_fail(ficapi_opaque_handle* p_handle, int fail);
 FICAPI_API void ficapi_handle_no_alloc_re_create(ficapi_opaque_handle* p_handle);
+FICAPI_API int ficapi_handle_no_alloc_re_create_fail(ficapi_opaque_handle* p_handle, int fail);
 FICAPI_API void ficapi_handle_no_alloc_delete(ficapi_opaque_handle handle);
 
 FICAPI_API int ficapi_handle_get_data(ficapi_opaque_handle_const handle);

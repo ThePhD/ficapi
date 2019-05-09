@@ -48,11 +48,37 @@ void ficapi_create(void** p_handle, ficapi_type ft) {
 	}
 }
 
+int ficapi_create_fail(void** p_handle, ficapi_type ft, int fail) {
+	if (fail != 0) {
+		switch (ft) {
+		case ficapi_type::ficapi_type_int: {
+			int** i_handle = static_cast<int**>(static_cast<void*>(p_handle));
+			*i_handle		= nullptr;
+		}
+		case ficapi_type::ficapi_type_opaque: {
+			ficapi_opaque_handle* h_handle = static_cast<ficapi_opaque_handle*>(static_cast<void*>(p_handle));
+			*h_handle					 = nullptr;
+		}
+		}
+		return 1;
+	}
+	ficapi_create(p_handle, ft);
+	return 0;
+}
+
 void ficapi_re_create(void** p_handle, ficapi_type ft) {
 	if (*p_handle != nullptr) {
 		ficapi_delete(*p_handle, ft);
 	}
 	ficapi_create(p_handle, ft);
+}
+
+int ficapi_re_create_fail(void** p_handle, ficapi_type ft, int fail) {
+	if (fail != 0) {
+		return 1;
+	}
+	ficapi_re_create(p_handle, ft);
+	return 0;
 }
 
 void ficapi_delete(void* handle, ficapi_type ft) {
@@ -77,11 +103,28 @@ void ficapi_int_create(int** p_handle) {
 	*ihandle	= ficapi_get_dynamic_data();
 }
 
+int ficapi_int_create_fail(int** p_handle, int fail) {
+	if (fail != 0) {
+		*p_handle = nullptr;
+		return 1;
+	}
+	ficapi_int_create(p_handle);
+	return 0;
+}
+
 void ficapi_int_re_create(int** p_handle) {
 	if (*p_handle != nullptr) {
 		ficapi_int_delete(*p_handle);
 	}
 	ficapi_int_create(p_handle);
+}
+
+int ficapi_int_re_create_fail(int** p_handle, int fail) {
+	if (fail != 0) {
+		return 1;
+	}
+	ficapi_int_re_create(p_handle);
+	return 0;
 }
 
 void ficapi_int_delete(int* handle) {
@@ -94,11 +137,28 @@ void ficapi_handle_create(ficapi_opaque_handle* p_handle) {
 	handle->value			    = ficapi_get_dynamic_data();
 }
 
+int ficapi_handle_create_fail(ficapi_opaque_handle* p_handle, int fail) {
+	if (fail != 0) {
+		*p_handle = nullptr;
+		return 1;
+	}
+	ficapi_handle_create(p_handle);
+	return 0;
+}
+
 void ficapi_handle_re_create(ficapi_opaque_handle* p_handle) {
 	if (*p_handle != nullptr) {
 		ficapi_handle_delete(*p_handle);
 	}
 	ficapi_handle_create(p_handle);
+}
+
+int ficapi_handle_re_create_fail(ficapi_opaque_handle* p_handle, int fail) {
+	if (fail != 0) {
+		return 1;
+	}
+	ficapi_handle_re_create(p_handle);
+	return 0;
 }
 
 void ficapi_handle_delete(ficapi_opaque_handle handle) {
@@ -109,12 +169,28 @@ void ficapi_handle_no_alloc_create(ficapi_opaque_handle* p_handle) {
 	*p_handle = &opaque_data;
 }
 
+int ficapi_handle_no_alloc_create_fail(ficapi_opaque_handle* p_handle, int fail) {
+	if (fail != 0) {
+		*p_handle = nullptr;
+		return 1;
+	}
+	ficapi_handle_no_alloc_create(p_handle);
+	return 0;
+}
+
 void ficapi_handle_no_alloc_re_create(ficapi_opaque_handle* p_handle) {
 	if (*p_handle != nullptr) {
 		ficapi_handle_no_alloc_delete(*p_handle);
-		*p_handle = nullptr;
 	}
 	*p_handle = &opaque_data;
+}
+
+int ficapi_handle_no_alloc_re_create_fail(ficapi_opaque_handle* p_handle, int fail) {
+	if (fail != 0) {
+		return 1;
+	}
+	ficapi_handle_no_alloc_re_create(p_handle);
+	return 0;
 }
 
 void ficapi_handle_no_alloc_delete(ficapi_opaque_handle handle) {
