@@ -20,6 +20,8 @@ set_target_properties(ficapi
 target_compile_definitions(ficapi
 	PRIVATE FICAPI_BUILD=1
 	PUBLIC FICAPI_DLL=1)
+target_compile_options(ficapi
+	PRIVATE -std=c++11)
 target_include_directories(ficapi
 	PUBLIC "include")
 target_link_libraries(ficapi 
