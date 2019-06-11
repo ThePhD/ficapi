@@ -1,10 +1,7 @@
-//  Copyright ⓒ 2018-2019 ThePhD.
-//
-//  Distributed under the Boost Software License, Version 1.0. (See
-//  accompanying file LICENSE_1_0.txt or copy at
-//  http://www.boost.org/LICENSE_1_0.txt)
-//
-//  See http://www.boost.org/libs/out_ptr/ for documentation.
+// ficapi��
+// The Shrug License
+
+// Copyright � 2018 ThePhD. All rights can sometimes maybe not unreserved, yo.
 
 #pragma once
 
@@ -29,15 +26,15 @@ namespace ficapi {
 	};
 
 	struct int_deleter {
-		FICAPI_API void operator()(int* p) const;
+		FICAPI_API void operator()(int* p) const noexcept;
 	};
 
 	struct handle_deleter {
-		FICAPI_API void operator()(opaque_handle p) const;
+		FICAPI_API void operator()(opaque_handle p) const noexcept;
 	};
 
 	struct handle_no_alloc_deleter {
-		FICAPI_API void operator()(opaque_handle p) const;
+		FICAPI_API void operator()(opaque_handle p) const noexcept;
 	};
 
 	struct stateful_deleter {
@@ -46,13 +43,13 @@ namespace ficapi {
 		ficapi_type m_ft;
 
 	public:
-		FICAPI_API stateful_deleter(std::uint32_t state, ficapi_type ft);
+		FICAPI_API stateful_deleter(std::uint32_t state, ficapi_type ft) noexcept;
 
-		FICAPI_API void operator()(void* p) const;
+		FICAPI_API void operator()(void* p) const noexcept;
 
-		FICAPI_API std::uint32_t state() const;
+		FICAPI_API std::uint32_t state() const noexcept;
 
-		FICAPI_API ficapi_type type() const;
+		FICAPI_API ficapi_type type() const noexcept;
 	};
 
 	struct stateful_int_deleter {
@@ -60,11 +57,11 @@ namespace ficapi {
 		std::uint32_t m_some_state;
 
 	public:
-		FICAPI_API stateful_int_deleter(std::uint32_t state);
+		FICAPI_API stateful_int_deleter(std::uint32_t state) noexcept;
 
-		FICAPI_API void operator()(int* p) const;
+		FICAPI_API void operator()(int* p) const noexcept;
 
-		FICAPI_API std::uint32_t state() const;
+		FICAPI_API std::uint32_t state() const noexcept;
 	};
 
 	struct stateful_handle_deleter {
@@ -72,11 +69,11 @@ namespace ficapi {
 		std::uint32_t m_some_state;
 
 	public:
-		FICAPI_API stateful_handle_deleter(std::uint32_t state);
+		FICAPI_API stateful_handle_deleter(std::uint32_t state) noexcept;
 
-		FICAPI_API void operator()(opaque_handle p) const;
+		FICAPI_API void operator()(opaque_handle p) const noexcept;
 
-		FICAPI_API std::uint32_t state() const;
+		FICAPI_API std::uint32_t state() const noexcept;
 	};
 
 	struct stateful_handle_no_alloc_deleter {
@@ -84,11 +81,11 @@ namespace ficapi {
 		std::uint32_t m_some_state;
 
 	public:
-		FICAPI_API stateful_handle_no_alloc_deleter(std::uint32_t state);
+		FICAPI_API stateful_handle_no_alloc_deleter(std::uint32_t state) noexcept;
 
-		FICAPI_API void operator()(opaque_handle p) const;
+		FICAPI_API void operator()(opaque_handle p) const noexcept;
 
-		FICAPI_API std::uint32_t state() const;
+		FICAPI_API std::uint32_t state() const noexcept;
 	};
 } // namespace ficapi
 
