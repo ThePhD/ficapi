@@ -35,8 +35,8 @@ namespace ficapi {
 		return m_ft;
 	}
 
-	stateful_int_deleter::stateful_int_deleter(std::uint32_t state)
-	: m_some_state(state) noexcept {
+	stateful_int_deleter::stateful_int_deleter(std::uint32_t state) noexcept
+	: m_some_state(state) {
 	}
 
 	void stateful_int_deleter::operator()(int* p) const noexcept {
