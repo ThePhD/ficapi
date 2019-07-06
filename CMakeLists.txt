@@ -12,6 +12,7 @@ set(ficapi_sources
 )
 
 add_library(ficapi SHARED ${ficapi_sources})
+add_library(ficapi::ficapi ALIAS ficapi)
 set_target_properties(ficapi PROPERTIES
 	CXX_STANDARD 11
 	CXX_STANDARD_REQUIRED ON
