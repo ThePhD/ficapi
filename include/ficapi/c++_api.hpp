@@ -1,7 +1,7 @@
 // ficapi��
 // The Shrug License
 
-// Copyright � 2018 ThePhD. All rights can sometimes maybe not unreserved, yo.
+// Copyright � 2018-2020 ThePhD. All rights can sometimes maybe not unreserved, yo.
 
 #pragma once
 
