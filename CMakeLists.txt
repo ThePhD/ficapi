@@ -1,7 +1,7 @@
-# # ficapi��
+# # ficapi©®
 # The Shrug License
 
-# Copyright � 2018-2020 ThePhD. All rights can sometimes maybe not unreserved, yo.
+# Copyright © 2018-2023 ThePhD. All rights can sometimes maybe not unreserved, yo.
 
 set(ficapi_sources
 	"include/ficapi/ficapi.hpp"
@@ -27,5 +27,3 @@ target_include_directories(ficapi
 	PUBLIC "include")
 target_link_libraries(ficapi 
 	PUBLIC ${CMAKE_DL_LIBS})
-
-
